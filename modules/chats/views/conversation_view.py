@@ -3,7 +3,7 @@ from rest_framework.decorators import action
 from rest_framework import status
 
 from chats.common.base.view import BaseAPIView
-from chats.models import User, Conversation, ConversationMember
+from chats.models import User, Conversation, Participants
 from chats.common.enums import ConversationEnums, RoleEnums
 
 
@@ -18,7 +18,7 @@ class ConversationViewSet(BaseAPIView):
             type=ConversationEnums.DIRECT,
         )
 
-        ConversationMember.objects.create(
+        Participants.objects.create(
             conversation=conversation,
             user=request.user,
             role=RoleEnums.OWNER
@@ -28,7 +28,7 @@ class ConversationViewSet(BaseAPIView):
             id=request.data.user_id
         )
 
-        ConversationMember.objects.create(
+        Participants.objects.create(
             conversation=conversation,
             user=user,
             role=RoleEnums.OWNER

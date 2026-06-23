@@ -180,7 +180,7 @@ Body:
 
 Backend updates:
 
-ConversationMember.last_read_message = 100
+Participants.last_read_message = 100
 
 That's all.
 

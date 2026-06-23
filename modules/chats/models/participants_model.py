@@ -1,7 +1,7 @@
 from django.db import models
 from chats.common.enums import RoleEnums
 
-class ConversationMember(models.Model):
+class Participants(models.Model):
     conversation = models.ForeignKey(
         "Conversation",
         on_delete=models.CASCADE,
