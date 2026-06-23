@@ -1,0 +1,4 @@
+# __pycache__/
+cenv
+# *.pyc
+# db.sqlite3

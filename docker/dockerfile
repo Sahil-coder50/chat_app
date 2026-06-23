@@ -1,0 +1,28 @@
+FROM python:3.12-slim
+
+# Prevents Python buffering logs
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+
+WORKDIR /chat_app
+
+# System dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    curl \
+    libpq-dev \
+    netcat-openbsd \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install dependencies first ( better caching )
+COPY requirements/ requirements/
+
+RUN pip install --no-cache-dir -r requirements/production.txt
+
+# Copy Project
+COPY . .
+
+# Make entrypoint executable
+RUN chmod +x /chat_app/docker/entrypoint.sh
+
+EXPOSE 8000
