@@ -1,5 +1,5 @@
 from django.db import models
-from chats.common.mixins import SoftDeleteMixin, TimestampMixin
+from modules.chats.common.mixins import SoftDeleteMixin, TimestampMixin
 
 class User(models.Model, SoftDeleteMixin, TimestampMixin):
     name = models.CharField(max_length=255)

@@ -1,6 +1,6 @@
 from django.db import models
-from chats.common.enums import ConversationEnums
-from chats.common.mixins import SoftDeleteMixin, TimestampMixin, AuditMixin
+from modules.chats.common.enums import ConversationEnums
+from modules.chats.common.mixins import SoftDeleteMixin, TimestampMixin, AuditMixin
 
 class Conversation(models.Model, TimestampMixin, AuditMixin):
     type = models.CharField(
@@ -11,4 +11,10 @@ class Conversation(models.Model, TimestampMixin, AuditMixin):
     title = models.CharField(
         max_length=255,
         blank=True, null=True,
+    )
+
+    direct_key = models.CharField(
+        max_length=255,
+        unique=True,
+        null=True, blank=True,
     )

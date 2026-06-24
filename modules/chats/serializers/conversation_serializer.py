@@ -1,7 +1,7 @@
 
 from rest_framework import serializers
 
-from chats.models import Conversation
+from modules.chats.models import Conversation
 
 class ConversationListSerializer(serializers.ModelSerializer):
 

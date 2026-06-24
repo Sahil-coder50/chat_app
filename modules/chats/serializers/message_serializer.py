@@ -1,7 +1,7 @@
 
 from rest_framework import serializers
 
-from chats.models import Message
+from modules.chats.models import Message
 
 class MessageListSerializer(serializers.ModelSerializer):
 

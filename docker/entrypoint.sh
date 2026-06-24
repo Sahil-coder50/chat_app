@@ -11,6 +11,7 @@ echo "PostgreSQL started"
 
 if [ "$RUN_MIGRATIONS" = "1" ]; then
   echo "Running migrations..."
+  python manage.py makemigrations --settings=config.settings.production
   python manage.py migrate --settings=config.settings.production --noinput
   python manage.py collectstatic --settings=config.settings.production --noinput
 fi

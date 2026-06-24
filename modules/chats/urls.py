@@ -1,14 +1,14 @@
 from django.urls import path
 from rest_framework import routers
-from chats.views import *
+from modules.chats.views import *
 
 router = routers.DefaultRouter()
 
 router.register(r"conversations", ConversationViewSet, basename="conversations")
-router.register(r"messages", MessageViewSet, basename="messages")
-router.register(r"uploads", UploadViewSet, basename="uploads")
+# router.register(r"messages", MessageViewSet, basename="messages")
+# router.register(r"uploads", UploadViewSet, basename="uploads")
 
-urlpatterns = [] + router
+urlpatterns = [] + router.urls
 
 
 """

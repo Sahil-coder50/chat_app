@@ -1,5 +1,5 @@
 from django.db import models
-from chats.common.enums import MessageTypeEnums
+from modules.chats.common.enums import MessageTypeEnums
 
 class MessageAttachement(models.Model):
     message = models.ForeignKey(
@@ -8,7 +8,7 @@ class MessageAttachement(models.Model):
         related_name="attachements"
     )
 
-    file = models.ForeignKey(upload_to="chat/")
+    file = models.FileField(upload_to="chat/")
 
     type = models.CharField(
         max_length=10,

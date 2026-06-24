@@ -2,45 +2,28 @@
 from rest_framework.decorators import action
 from rest_framework import status
 
-from chats.common.base.view import BaseAPIView
-from chats.models import User, Conversation, Participants
-from chats.common.enums import ConversationEnums, RoleEnums
+from modules.chats.common.base.view import BaseAPIView
+from modules.chats.models import User, Conversation, Participants
+from modules.chats.common.enums import ConversationEnums, RoleEnums
+
+from modules.chats.services import ConversationService
+from modules.chats.selectors import ConversationSelector
+from modules.chats.serializers import UserSerializer, ConversationCreateSerializer, ConversationListSerializer, ConversationUpdateSerializer, ConversationRetrieveSerializer
 
 
 class ConversationViewSet(BaseAPIView):
-    
-    def create(self, request):
-        ...
 
-    @action(details=False, methods=["POST"])
+    @action(detail=False, methods=["POST"])
     def direct(self, request):
-        conversation = Conversation.objects.create(
-            type=ConversationEnums.DIRECT,
-        )
-
-        Participants.objects.create(
-            conversation=conversation,
-            user=request.user,
-            role=RoleEnums.OWNER
-        )
-
-        user = User.objects.filter(
-            id=request.data.user_id
-        )
-
-        Participants.objects.create(
-            conversation=conversation,
-            user=user,
-            role=RoleEnums.OWNER
-        )
+        conversation = ConversationService.direct_create(request=request, serializer=UserSerializer, data=request.data)
 
         return self.success_response(
             data=conversation.id,
-            status=status.HTTP_200_OK
+            status=status.HTTP_201_CREATED
         )
 
 
-    @action(details=False, methods=["POST"])
+    @action(detail=False, methods=["POST"])
     def group(self, request):
         ...
 

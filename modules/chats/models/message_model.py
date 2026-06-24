@@ -1,5 +1,5 @@
 from django.db import models
-from chats.common.mixins import SoftDeleteMixin
+from modules.chats.common.mixins import SoftDeleteMixin
 
 class Message(models.Model, SoftDeleteMixin):
     conversation = models.ForeignKey(

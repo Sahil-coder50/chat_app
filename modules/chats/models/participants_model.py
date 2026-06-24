@@ -1,5 +1,5 @@
 from django.db import models
-from chats.common.enums import RoleEnums
+from modules.chats.common.enums import RoleEnums
 
 class Participants(models.Model):
     conversation = models.ForeignKey(
@@ -26,7 +26,7 @@ class Participants(models.Model):
         null=True, blank=True,
     )
 
-    joined_at = models.DateTimeField(null=False, blank=False)
+    joined_at = models.DateTimeField(auto_now_add=True, null=False, blank=False)
 
     muted_until = models.DateTimeField(null=True, blank=True)
 
