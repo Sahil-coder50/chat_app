@@ -31,11 +31,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'channels',
+    'auth_drf',
     'modules.chats.apps.ChatsConfig',
 ]
 
+AUTH_USER_MODEL = "chats.User"
+
 REST_FRAMEWORK = {
     "EXCEPTION_HANDLER":"common.exceptions.handlers.custom_exception_handler",
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+            "rest_framework_simplejwt.authentication.JWTAuthentication",
+        ),
 }
 
 MIDDLEWARE = [

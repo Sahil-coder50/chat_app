@@ -9,4 +9,6 @@ urlpatterns = [
 
     # APP
     path("api/v1/", include("modules.chats.urls")),
+
+    path("", include("auth_drf.urls")),
 ]
